@@ -69,7 +69,18 @@ header {
     background-color: var(--cor4);
     width: 45%;
     height: 100%;
-    border-radius: 0px 220px 220px 0px;
+    border-radius: 15px 220px 220px 15px;
+    left: 60%;
+}
+
+.second-content::before{
+    content: "";
+    position: absolute;
+    background-color: var(--cor4);
+    width: 45%;
+    height: 100%;
+    border-radius: 220px 15px 15px 220px;
+    right: 60%;
 }
 
 /* TITULOS */
@@ -81,6 +92,7 @@ header {
 
 .title-primary{
     color: #ffffff;
+    margin: 0 20px;
 }
 
 .title-second{
@@ -135,6 +147,7 @@ header {
 /*PRIMEIRO CONTEUDO*/
 .first-content{
     display: flex;
+    display: none;
 }
 
 /* PRIMEIRA COLUNA */
@@ -146,7 +159,9 @@ header {
 
 /* SEGUNDA COLUNA */
 .second-column{
-    flex: 2 0 auto; /* Define o flex-grow para 2, o flex-shrink para 0 e o flex-basis para auto */
+    flex: 2 0 auto; /* Define o flex-grow para 2, o flex-shrink para 0 e o flex-basis para auto 
+    flex-grow se refere ao crescimento da coluna, flex-shrink se refere ao diminuicao da coluna e flex-basis se refere ao tamanho inicial da coluna
+    oq significa que a coluna ira crescer ou diminuir de acordo com o conteudo da coluna*/
     display: flex;
     height: 100%;
     flex-direction: column;
@@ -156,9 +171,14 @@ header {
 }
 
 /* SOCIAL MIDIA */
+
 .list-social-midia{
     display: flex;
     list-style-type: none;
+}
+
+.link-social-midia:not(:first-child){
+    margin-left: 10px;
 }
 
 .item-social-midia{
@@ -170,9 +190,6 @@ header {
     line-height: 30px;
     text-align: center;
     cursor: pointer;
-}
-
-.item-social-midia a {
     color: #95a5a6;
 }
 
@@ -191,8 +208,7 @@ header {
     display: flex;
     flex-direction: column;
     width: 60%;
-    gap: 10px;
-}
+    gap: 10px;}
 
 
 .form-dados{
@@ -231,6 +247,25 @@ input{
 /* SEGUNDA COLUNA */
 .second-content{
     position: absolute;
-    display: none;
+    display: flex;
+}
+
+.second-content .first-column{
+    order: 2;
+}
+
+.second-content .second-column{
+    order: 1;
+}
+
+.password{
+    color: #95a5a6;
+    font-size: 14px;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.password ::first-letter{
+    text-transform: capitalize;
 }
 
