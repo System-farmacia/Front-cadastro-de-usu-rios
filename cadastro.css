@@ -294,3 +294,136 @@ input{
     text-transform: capitalize;
 }
 
+/*FOOTER*/ 
+footer{  
+    width: 100%; /* Faz o rodapé ocupar toda a largura da tela */
+    color: #f9fafb; /* Define a cor do texto dentro do rodapé (um tom claro) */
+}
+
+.footer-link{
+    text-decoration: none; /* Remove o sublinhado padrão dos links */
+}
+
+.footer-container{
+    background-color: #1E2842; /* Define a cor de fundo do rodapé*/
+    display: grid; /* Organiza os elementos em forma de grade */
+    grid-template-columns: repeat(4, 1fr); /* Divide em 4 colunas iguais */
+    padding: 3rem 3.5rem; /* Espaçamento interno (em cima/baixo 3rem, lados 3.5rem) */
+}
+
+.footer-contacts img{
+    margin-bottom: 0.75rem; /* Dá espaço abaixo das imagens de contato */
+}
+
+.footer-socialmidia{
+    display: flex; /* Organiza os ícones em linha */
+    gap: 2rem; /* Espaço entre os ícones */
+    margin-top: 1.5rem; /* Espaço acima do bloco de ícones */
+}
+
+.footer-socialmidia .footer-link{
+    display: flex; 
+    align-items: center; /* Centraliza o ícone verticalmente */
+    justify-content: center; /* Centraliza o ícone horizontalmente */
+    height: 2.5rem; /* Altura do botão/ícone */
+    width: 2.5rem; /* Largura do botão/ícone */
+    color: #f9fafb; /* Cor do ícone*/
+    border-radius: 50%; /* Deixa o botão redondo */
+    transition: all 0.4s; /* Faz animações suaves em 0.4 segundos */
+}
+
+.footer-socialmidia .footer-link i{
+    font-size: 1.25rem; /* Define o tamanho do ícone dentro do botão */
+}
+
+.footer-socialmidia .footer-link:hover{
+    opacity: 0.8; /* Quando passa o mouse, o botão fica levemente transparente */
+}
+
+#instagram{
+    background: linear-gradient(#7f37c9, #ff2992, #ff9807); /* Fundo colorido em degradê para o botão do Instagram */
+}
+
+#github{
+    background-color: #4267b3; /* Fundo azul para o botão do GitHub */
+}
+
+#whatsapp{
+    background-color: #25d366; /* Fundo verde para o botão do WhatsApp */
+}
+
+.footer-list{
+    display: flex; /* Organiza os itens em linha flexível */
+    flex-direction: column; /* Coloca os itens em coluna (um embaixo do outro) */
+    gap: 0.75rem; /* Espaço entre os itens da lista */
+    list-style: none; /* Remove as bolinhas padrão da lista */
+}
+
+.footer-list .footer-link{
+    color: #f9fafb; /* Cor clara para os links */
+    transition: all 0.4s; /* Animação suave ao mudar de cor */
+}
+
+.footer-list .footer-link:hover{
+    color:#25d366; /* Quando passa o mouse, o link fica verde */
+}
+
+.footer-feedback{
+    display: flex; /* Organiza os elementos em linha flexível */
+    flex-direction: column; /* Coloca os elementos em coluna */
+    gap: 1.5rem; /* Espaço entre os elementos */
+}
+
+.input-group{
+    background-color: #f9fafb; /* Fundo branco para o campo de entrada */
+    display: flex; /* Organiza o campo e o botão em linha */
+    align-items: center; /* Centraliza verticalmente */
+    border-radius: 4px; /* Bordas levemente arredondadas */
+    color: #0c111b; /* Cor do texto dentro do campo */
+}
+
+.input-group input{
+    all: unset; /* Remove todas as configurações padrão do input */
+    padding: 0.75rem; /* Espaço interno dentro do campo */
+    width: 100%; /* Faz o campo ocupar toda a largura disponível */
+}
+
+.input-group button{
+    background-color: #319b3f; /* Fundo verde para o botão */
+    border: none; /* Remove a borda padrão */
+    color: #f9fafb; /* Cor do texto do botão (clara) */
+    padding: 0px 1.25rem; /* Espaço interno (sem em cima/baixo, 1.25rem nos lados) */
+    height: 100%; /* Faz o botão ter a mesma altura do campo */
+    border-radius: 0px 6px 6px 0px; /* Bordas arredondadas só no lado direito */
+    transition: all 0.4s; /* Animação suave ao interagir */
+}
+
+.input-group button:hover{
+    opacity: 0.8; /* Botão fica levemente transparente ao passar o mouse */
+}
+
+.footer-copyright{
+    display: flex; /* Organiza os elementos em linha flexível */
+    flex-direction: column; /* Coloca os elementos em coluna */
+    align-items: center; /* Centraliza horizontalmente */
+    text-align: center; /* Centraliza o texto */
+    background-color: #0c111b; /* Fundo bem escuro */
+    font-size: 0.75rem; /* Texto pequeno */
+    padding: 1.5rem; /* Espaço interno */
+    font-weight: 100; /* Texto bem fino */
+}
+
+@media screen and (max-width: 768px){
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr); /* Em telas menores, divide em 2 colunas */
+        gap: 2rem; /* Espaço entre as colunas */
+    }
+}
+
+@media screen and (max-width: 426px){
+    .footer-container {
+        grid-template-columns: repeat(1, 1fr); /* Em telas bem pequenas, só 1 coluna */
+        padding: 3rem, 2rem; /* Espaçamento interno (mas aqui tem um erro: deveria ser espaço, não vírgula) */
+    }
+}
+
