@@ -1,59 +1,75 @@
+/* ============================================================================
+/* =============================================================================
+   RESET
+============================================================================= */
+
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;700&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /*a medida das bordas e padding nao afetam o tamanho do conteudo*/
+    box-sizing: border-box; /* Borda e padding não aumentam o tamanho do elemento */
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #ebebeb; /* Cor de fundo suave */
+    background-color: #ebebeb;
 }
 
-/*VARIAVEIS DAS CORES*/
-:root{
-    --cor1: #1E2842;
-    --cor2: #43a2d3;
-    --cor3: #86c541;
-    --cor4: #319b3f;
-    --cor5: #f9fafb;
+
+/* =============================================================================
+   2. VARIÁVEIS — PALETA DE CORES
+============================================================================= */
+
+:root {
+    --cor1: #1E2842; /* Azul escuro — header e footer */
+    --cor2: #43a2d3; /* Azul médio — reservado */
+    --cor3: #86c541; /* Verde claro — borda inferior do header */
+    --cor4: #319b3f; /* Verde principal — botões e destaques */
+    --cor5: #f9fafb; 
 }
 
-/*NAVBAR*/
+
+/* =============================================================================
+   3. HEADER / NAVBAR
+============================================================================= */
+
 header {
-    background-color: var(--cor1); /* Cor de fundo do header */
-    position: sticky; /* Mantém a posição fixa do banner */
-    margin-bottom: 20px; /* Espaçamento abaixo do header */
+    background-color: var(--cor1);
+    position: sticky;
     top: 0;
     left: 0;
-    display: flex; /*ele permite organizar os elementos em linha ou coluna*/
-    justify-content: space-between; /* Distribui os itens com espaço entre eles */
-    align-items: center; /* Alinha os itens verticalmente ao centro */
-    padding: 10px 80px; /* Espaçamento interno aumentado para mais espaço das margens */
-    border-bottom: 20px solid var(--cor3); /* Borda na parte inferior do header */
-    z-index: 1000; /* Garante que o header fique acima de outros elementos */
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 80px;
+    margin-bottom: 20px;
+    border-bottom: 20px solid var(--cor3);
 }
-
 
 .logotipo {
-    margin-right: auto; /* Empurra o logotipo para a esquerda */ 
-    width: 150px; /* Ajuste conforme o tamanho desejado */
-    height: auto; /* Mantém a proporção da imagem */
+    width: 150px;
+    height: auto;
     padding: 10px;
+    margin-right: auto; /* Empurra o logo para a esquerda */
 }
 
-/* MAIN */
 
-/* PRIMEIRA COLUNA */
-.container{
+/* =============================================================================
+   4. MAIN — CONTAINER E CONTENT (BASE COMPARTILHADA)
+============================================================================= */
+
+/* Centraliza o conteúdo principal na viewport */
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* 100% da altura da viewport, serve para centralizar verticalmente */
+    height: 100vh;
 }
 
-.content{
+/* Card branco base — compartilhado entre login e cadastro */
+.content {
     background-color: #ffffff;
     border-radius: 15px;
     width: 80%;
@@ -63,63 +79,163 @@ header {
     position: relative;
 }
 
-.content::before{
+/* Fundo verde arredondado (pseudo-elemento) — base compartilhada */
+.content::before {
     content: "";
     position: absolute;
     background-color: var(--cor4);
     width: 45%;
     height: 100%;
+    left: 0;
 }
 
-.first-content::before{
-    border-radius: 220px 15px 15px 220px;
-    left: 0;
-    /* left: 0 → o elemento começa colado na borda esquerda do pai e cresce para a direita. */
+/* Coluna verde (boas-vindas / chamada para ação) */
+.first-column {
+    text-align: center;
+    width: 40%;
+    z-index: 1;
 }
-.second-content::before{
+
+/* Coluna branca com formulário */
+.second-column {
+    width: 60%;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+/* =============================================================================
+   5. FIRST CONTENT — TELA DE CADASTRO
+   Fundo verde à esquerda | Formulário de cadastro à direita
+============================================================================= */
+
+/* Layout da tela de cadastro */
+.first-content {
+    display: flex;
+    /* display: none; — descomente para ocultar */
+}
+
+/* Pseudo-elemento: borda arredondada à esquerda */
+.first-content::before {
+    border-radius: 220px 15px 15px 220px;
+}
+
+/* Formulário fica acima do pseudo-elemento verde */
+.first-content .second-column {
+    z-index: 12;
+}
+
+/* Título na coluna do formulário */
+.first-content .title-second {
+    color: var(--cor4);
+    margin: 0;
+}
+
+/* Formulário de cadastro — mais campos, inputs menores */
+.first-content .form {
+    width: 60%;
+    gap: 8px;
+}
+
+.first-content .form input {
+    height: 5px;
+    font-size: 12px;
+}
+
+
+/* =============================================================================
+   6. SECOND CONTENT — TELA DE LOGIN
+   Formulário de login à esquerda | Fundo verde à direita
+============================================================================= */
+
+/* Layout da tela de login — posicionada por cima do first-content */
+.second-content {
+    position: absolute;
+    display: flex;
+    /* display: none; — descomente para ocultar */
+}
+
+/* Pseudo-elemento: borda arredondada espelhada (verde à direita) */
+.second-content::before {
     border-radius: 220px 15px 15px 220px;
     right: 0;
-    /* right: 0 → o elemento começa colado na borda direita do pai e cresce para a esquerda. */
 }
 
-/* TITULOS */
-.title{
+/* Inverte a ordem das colunas: formulário vem antes do fundo verde */
+.second-content .first-column {
+    order: 2;
+    opacity: -1; /* Oculto na versão atual */
+}
+
+.second-content .second-column {
+    order: 1;
+    opacity: -1; /* Oculto na versão atual */
+}
+
+/* Título na coluna do formulário */
+.second-content .title-second {
+    color: var(--cor4);
+    margin-top: 40px;
+}
+
+/* Formulário de login — menos campos, inputs maiores */
+.second-content .form {
+    gap: 15px;
+    padding: 20px;
+}
+
+.second-content .form input {
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+}
+
+
+/* =============================================================================
+   7. ESTILOS COMPARTILHADOS
+============================================================================= */
+
+/* --- Tipografia --- */
+
+.title {
     font-size: 28px;
     font-weight: bold;
     text-transform: capitalize;
 }
 
-.title-primary{
+.title-primary {
     color: #ffffff;
     margin: 0 20px;
 }
 
-.first-content .title-second{
-    color: var(--cor4);
-    margin: 0px;
-}
-
-.second-content .title-second{
-    color: var(--cor4);
-    margin-top: 40px;
-}
-/* DESCRICOES */
-.description{
+/* Descrição sobre fundo verde (coluna de boas-vindas) */
+.description {
     color: #ffffff;
     font-size: 14px;
     font-weight: 100;
-    line-height: 30px; /* Espaçamento entre linhas */
+    line-height: 30px;
 }
 
-.description-column2{
+.description-primary {
+    /* Herda os estilos de .description */
+}
+
+/* Descrição sobre fundo branco (coluna do formulário) */
+.description-column2 {
     color: #95a5a6;
     font-size: 14px;
     font-weight: 100;
-    line-height: 30px; /* Espaçamento entre linhas */
+    line-height: 30px;
 }
 
-/*BOTOES*/
-.btn{
+/* --- Botões --- */
+
+/* Botão principal — usado na coluna verde */
+.btn {
     border-radius: 5px;
     border: 1px solid #ffffff;
     background-color: var(--cor4);
@@ -132,61 +248,38 @@ header {
     cursor: pointer;
 }
 
-.btn:hover{
+.btn:hover {
     background-color: #ffffff;
     color: var(--cor4);
     transition: 0.5s;
 }
 
-.btn-colmn2{
+/* Botão dentro do formulário (coluna branca) */
+.btn-colmn2 {
     border-radius: 5px;
     border: 1px solid var(--cor4);
-    color: #ffffff;
     background-color: var(--cor4);
+    color: #ffffff;
     padding: 10px 20px;
     cursor: pointer;
     margin-bottom: 20px;
 }
 
-/*PRIMEIRO CONTEUDO*/
-.first-content{
-    /* display: flex; */
-    display: none;
-}
+/* --- Mídias Sociais --- */
 
-/* PRIMEIRA COLUNA */
-.first-column{
-    text-align: center;
-    flex: 1 0 auto;
-    z-index: 1;
-}
-
-/* SEGUNDA COLUNA */
-.second-column{
-    flex: 2 0 auto; /* Define o flex-grow para 2, o flex-shrink para 0 e o flex-basis para auto 
-    flex-grow se refere ao crescimento da coluna, flex-shrink se refere ao diminuicao da coluna e flex-basis se refere ao tamanho inicial da coluna
-    oq significa que a coluna ira crescer ou diminuir de acordo com o conteudo da coluna*/
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-/* SOCIAL MIDIA */
-.list-social-midia{
+.list-social-midia {
     display: flex;
     list-style-type: none;
 }
 
-.link-social-midia:not(:first-child){
+.link-social-midia:not(:first-child) {
     margin-left: 10px;
 }
 
-.item-social-midia{
+/* Ícone circular de rede social */
+.item-social-midia {
     margin: 0 10px;
-    border: #95a5a6 1px solid;
+    border: 1px solid #95a5a6;
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -196,234 +289,268 @@ header {
     color: #95a5a6;
 }
 
-.item-social-midia:hover{
+.item-social-midia:hover {
     background-color: var(--cor4);
-    transition: 0.5s;
-    color: #ffffff;
-}
-
-/* .item-social-midia:hover a{
     color: #ffffff;
     transition: 0.5s;
-} */
-
-/* FORMULARIO */
-.form{
-    display: flex;
-    flex-direction: column;
 }
 
-.first-content .form{
-    width: 60%;
-    gap:  8px;
-}
+/* --- Formulário (base) --- */
 
-.first-content .form input{
-    height: 5px;
-    font-size: 12px;
-}
-
-.second-content .form{
-    gap: 15px; /* mais espaço no login pois tem menos campos */
-    padding: 20px;
-}
-
-.second-content .form input{
-    width: 100%;
-    height: 40px;
-    font-size: 15px;
-}
-
-.form-dados{
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap; 
-    gap: 10px;
-}
-
-.form-dados input{
-     flex: 1 1 140px; /* cresce, encolhe, base 140px */
-}
-
-.form-endereco{
-    display: flex; /* Habilita o uso de flexbox */
-    justify-content: space-evenly; /* Centraliza os inputs horizontalmente */
-    flex-wrap: wrap; /* quebra os inputs em linhas */
-    gap: 10px;
-}
-
-.form-endereco input{
-    width: 100px;
-    flex: 1 1 20px;
-}
-
-input{
+/* Estilo base de todos os inputs */
+input {
     margin: 5px;
     padding: 10px;
     border-radius: 5px;
     border: none;
-    height: 5px; /* Aumenta a altura do input */
+    height: 5px;
     font-size: 14px;
     background-color: #f7f7f7;
 }
 
-/* SEGUNDA COLUNA */
-.second-content{
-    position: absolute;
+/* Estrutura geral do formulário */
+.form {
     display: flex;
-    /* display: none; */
+    flex-direction: column;
 }
 
-.second-content .first-column{
-    order: 2;
+/* Subseção de endereço — inputs em linha com quebra automática */
+.form-endereco {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-.second-content .second-column{
-    order: 1;
+.form-endereco input {
+    width: 100px;
+    flex: 1 1 20px;
 }
 
-.password{
+/* Link "Esqueci minha senha" */
+.password {
     color: #95a5a6;
     font-size: 14px;
     margin: 15px 0;
     text-align: center;
 }
 
-
-.password ::first-letter{
+.password::first-letter {
     text-transform: capitalize;
 }
 
-/*FOOTER*/ 
-footer{  
-    width: 100%; /* Faz o rodapé ocupar toda a largura da tela */
-    color: #f9fafb; /* Define a cor do texto dentro do rodapé (um tom claro) */
+/* ============================================================
+   ORDEM DE EXIBIÇÃO + ANIMAÇÃO
+============================================================ */
+
+/* Estado padrão: cadastro visível, login oculto */
+.first-content  { z-index: 2; }
+.second-content { z-index: 1; }
+
+/* Conteúdo do first-content visível por padrão */
+.first-content .first-column,
+.first-content .second-column {
+    opacity: 1;
+    transition: opacity 0.4s ease;
 }
 
-.footer-link{
-    text-decoration: none; /* Remove o sublinhado padrão dos links */
+/* Conteúdo do second-content oculto por padrão */
+.second-content .first-column,
+.second-content .second-column {
+    opacity: 0;
+    transition: opacity 0.4s ease 0.2s; /* delay para aparecer depois da animação */
 }
 
-.footer-container{
-    background-color: #1E2842; /* Define a cor de fundo do rodapé*/
-    display: grid; /* Organiza os elementos em forma de grade */
-    grid-template-columns: repeat(4, 1fr); /* Divide em 4 colunas iguais */
-    padding: 3rem 3.5rem; /* Espaçamento interno (em cima/baixo 3rem, lados 3.5rem) */
+/* Animação do bloco verde */
+.content::before {
+    transition: left 0.6s ease, border-radius 0.6s ease;
 }
 
-.footer-contacts img{
-    margin-bottom: 0.75rem; /* Dá espaço abaixo das imagens de contato */
+/* ── Modo LOGIN (clicou em "Login") ── */
+.login-js .second-content {
+    z-index: 3;
 }
 
-.footer-socialmidia{
-    display: flex; /* Organiza os ícones em linha */
-    gap: 2rem; /* Espaço entre os ícones */
-    margin-top: 1.5rem; /* Espaço acima do bloco de ícones */
+/* Verde vai para a direita */
+.login-js .content::before {
+    left: 55%;
+    border-radius: 220px 15px 15px 220px;
+
 }
 
-.footer-socialmidia .footer-link{
-    display: flex; 
-    align-items: center; /* Centraliza o ícone verticalmente */
-    justify-content: center; /* Centraliza o ícone horizontalmente */
-    height: 2.5rem; /* Altura do botão/ícone */
-    width: 2.5rem; /* Largura do botão/ícone */
-    color: #f9fafb; /* Cor do ícone*/
-    border-radius: 50%; /* Deixa o botão redondo */
-    transition: all 0.4s; /* Faz animações suaves em 0.4 segundos */
+/* Mostra conteúdo do second-content */
+.login-js .second-content .first-column,
+.login-js .second-content .second-column {
+    opacity: 1;
 }
 
-.footer-socialmidia .footer-link i{
-    font-size: 1.25rem; /* Define o tamanho do ícone dentro do botão */
+/* Oculta conteúdo do first-content */
+.login-js .first-content .first-column,
+.login-js .first-content .second-column {
+    opacity: 0;
 }
 
-.footer-socialmidia .footer-link:hover{
-    opacity: 0.8; /* Quando passa o mouse, o botão fica levemente transparente */
+/* ── Modo CADASTRO (clicou em "Cadastrar") ── */
+.cadastrar-js .first-content {
+    z-index: 3;
 }
 
-#instagram{
-    background: linear-gradient(#7f37c9, #ff2992, #ff9807); /* Fundo colorido em degradê para o botão do Instagram */
+/* Verde volta para a esquerda */
+.cadastrar-js .content::before {
+    left: 0;
+    border-radius: 15px 220px 220px 15px;
 }
 
-#github{
-    background-color: #4267b3; /* Fundo azul para o botão do GitHub */
+/* Mostra conteúdo do first-content */
+.cadastrar-js .first-content .first-column,
+.cadastrar-js .first-content .second-column {
+    opacity: 1;
 }
 
-#whatsapp{
-    background-color: #25d366; /* Fundo verde para o botão do WhatsApp */
+/* Oculta conteúdo do second-content */
+.cadastrar-js .second-content .first-column,
+.cadastrar-js .second-content .second-column {
+    opacity: 0;
+}
+/* =============================================================================
+   11. FOOTER
+============================================================================= */
+
+footer {
+    width: 100%;
+    color: var(--cor5);
 }
 
-.footer-list{
-    display: flex; /* Organiza os itens em linha flexível */
-    flex-direction: column; /* Coloca os itens em coluna (um embaixo do outro) */
-    gap: 0.75rem; /* Espaço entre os itens da lista */
-    list-style: none; /* Remove as bolinhas padrão da lista */
+.footer-link {
+    text-decoration: none;
 }
 
-.footer-list .footer-link{
-    color: #f9fafb; /* Cor clara para os links */
-    transition: all 0.4s; /* Animação suave ao mudar de cor */
+/* Grid principal do rodapé — 4 colunas */
+.footer-container {
+    background-color: var(--cor1);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 3rem 3.5rem;
 }
 
-.footer-list .footer-link:hover{
-    color:#25d366; /* Quando passa o mouse, o link fica verde */
+.footer-contacts img {
+    margin-bottom: 0.75rem;
 }
 
-.footer-feedback{
-    display: flex; /* Organiza os elementos em linha flexível */
-    flex-direction: column; /* Coloca os elementos em coluna */
-    gap: 1.5rem; /* Espaço entre os elementos */
+/* Ícones de redes sociais no rodapé */
+.footer-socialmidia {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
 }
 
-.input-group{
-    background-color: #f9fafb; /* Fundo branco para o campo de entrada */
-    display: flex; /* Organiza o campo e o botão em linha */
-    align-items: center; /* Centraliza verticalmente */
-    border-radius: 4px; /* Bordas levemente arredondadas */
-    color: #0c111b; /* Cor do texto dentro do campo */
+.footer-socialmidia .footer-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    color: var(--cor5);
+    border-radius: 50%;
+    transition: all 0.4s;
 }
 
-.input-group input{
-    all: unset; /* Remove todas as configurações padrão do input */
-    padding: 0.75rem; /* Espaço interno dentro do campo */
-    width: 100%; /* Faz o campo ocupar toda a largura disponível */
+.footer-socialmidia .footer-link i {
+    font-size: 1.25rem;
 }
 
-.input-group button{
-    background-color: #319b3f; /* Fundo verde para o botão */
-    border: none; /* Remove a borda padrão */
-    color: #f9fafb; /* Cor do texto do botão (clara) */
-    padding: 0px 1.25rem; /* Espaço interno (sem em cima/baixo, 1.25rem nos lados) */
-    height: 100%; /* Faz o botão ter a mesma altura do campo */
-    border-radius: 0px 6px 6px 0px; /* Bordas arredondadas só no lado direito */
-    transition: all 0.4s; /* Animação suave ao interagir */
+.footer-socialmidia .footer-link:hover {
+    opacity: 0.8;
 }
 
-.input-group button:hover{
-    opacity: 0.8; /* Botão fica levemente transparente ao passar o mouse */
+/* Cores dos botões sociais */
+#instagram { background: linear-gradient(#7f37c9, #ff2992, #ff9807); }
+#github    { background-color: #4267b3; }
+#whatsapp  { background-color: #25d366; }
+
+/* Lista de links institucionais/atendimento */
+.footer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    list-style: none;
 }
 
-.footer-copyright{
-    display: flex; /* Organiza os elementos em linha flexível */
-    flex-direction: column; /* Coloca os elementos em coluna */
-    align-items: center; /* Centraliza horizontalmente */
-    text-align: center; /* Centraliza o texto */
-    background-color: #0c111b; /* Fundo bem escuro */
-    font-size: 0.75rem; /* Texto pequeno */
-    padding: 1.5rem; /* Espaço interno */
-    font-weight: 100; /* Texto bem fino */
+.footer-list .footer-link {
+    color: var(--cor5);
+    transition: all 0.4s;
 }
 
-@media screen and (max-width: 768px){
+.footer-list .footer-link:hover {
+    color: #25d366;
+}
+
+/* Seção de feedback com campo de e-mail */
+.footer-feedback {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    background-color: var(--cor5);
+    border-radius: 4px;
+    color: #0c111b;
+}
+
+.input-group input {
+    all: unset;
+    padding: 0.75rem;
+    width: 100%;
+}
+
+.input-group button {
+    background-color: var(--cor4);
+    border: none;
+    color: var(--cor5);
+    padding: 0 1.25rem;
+    height: 100%;
+    border-radius: 0 6px 6px 0;
+    transition: all 0.4s;
+    cursor: pointer;
+}
+
+.input-group button:hover {
+    opacity: 0.8;
+}
+
+/* Faixa de copyright */
+.footer-copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #0c111b;
+    font-size: 0.75rem;
+    font-weight: 100;
+    padding: 1.5rem;
+    color: var(--cor5);
+}
+
+
+/* =============================================================================
+   12. RESPONSIVIDADE
+============================================================================= */
+
+/* Tablet */
+@media screen and (max-width: 768px) {
     .footer-container {
-        grid-template-columns: repeat(2, 1fr); /* Em telas menores, divide em 2 colunas */
-        gap: 2rem; /* Espaço entre as colunas */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
     }
 }
 
-@media screen and (max-width: 426px){
+/* Mobile */
+@media screen and (max-width: 426px) {
     .footer-container {
-        grid-template-columns: repeat(1, 1fr); /* Em telas bem pequenas, só 1 coluna */
-        padding: 3rem, 2rem; /* Espaçamento interno (mas aqui tem um erro: deveria ser espaço, não vírgula) */
+        grid-template-columns: repeat(1, 1fr);
+        padding: 3rem 2rem; /* Corrigido: vírgula substituída por espaço */
     }
 }
-
